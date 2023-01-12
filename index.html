@@ -595,10 +595,10 @@
 			const BITS_IN_A_BYTE = 8;
 		
 			// Initialize result
-			var result = new Uint8Array(hexString["length"] / HEX_NUMBER_LENGTH);
+			const result = new Uint8Array(hexString["length"] / HEX_NUMBER_LENGTH);
 
 			// Go through all bytes in the result
-			for(var i = 0; i < result["length"]; ++i) {
+			for(let i = 0; i < result["length"]; ++i) {
 			
 				// Set character as a byte in the result
 				result[i] = (HEX_CHARACTER_TO_VALUE[hexString[i * HEX_NUMBER_LENGTH]] << (BITS_IN_A_BYTE / 2)) | HEX_CHARACTER_TO_VALUE[hexString[i * HEX_NUMBER_LENGTH + 1]];
@@ -667,13 +667,13 @@
 			const BITS_IN_A_BYTE = 8;
 			
 			// Initialize result
-			var result = "";
+			let result = "";
 			
 			// Go through all bytes in the byte array
-			for(var i = 0; i < byteArray["length"]; ++i) {
+			for(let i = 0; i < byteArray["length"]; ++i) {
 			
 				// Get byte
-				var byte = byteArray[i];
+				const byte = byteArray[i];
 				
 				// Append byte as characters to the result
 				result = result.concat(VALUE_TO_HEX_CHARACTER[byte >>> (BITS_IN_A_BYTE / 2)], VALUE_TO_HEX_CHARACTER[byte & 0x0F]);
@@ -687,16 +687,16 @@
 		function mergeArrays(arrays) {
 		
 			// Initialize result
-			var result = new Uint8Array([]);
+			let result = new Uint8Array([]);
 		
 			// Go through all arrays
-			for(var i = 0; i < arrays["length"]; ++i) {
+			for(let i = 0; i < arrays["length"]; ++i) {
 			
 				// Get array
-				var array = arrays[i];
+				const array = arrays[i];
 				
 				// Set updated result to be the length of the current result and the array
-				var updatedResult = new Uint8Array(result["length"] + array["length"]);
+				const updatedResult = new Uint8Array(result["length"] + array["length"]);
 				
 				// Set arrays in the updated result
 				updatedResult.set(result);
