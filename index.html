@@ -258,7 +258,7 @@
 					let macInitializationVector = new Uint8Array(AES_IV_SIZE);
 					
 					// Add alert
-					addAlert("Installing the " + app + " app on the " + walletName + ". Verify that the identifier displayed on the hardware wallet is " + APPS[app]["Hash"][walletType].toUpperCase() + ". Do not proceed if the identifier is different. This app was built for " + walletName + " hardware wallets with firmware version " + FIRMWARE_VERSIONS[walletType] + ", and it may not work and/or display a different identifier if the hardware wallet doesn't have that firmware version.");
+					addAlert("Installing the " + app + " app on the " + walletName + ". Verify that the identifier displayed on the hardware wallet is " + APPS[app]["Hash"][walletType].trim().toUpperCase() + ". Do not proceed if the identifier is different. This app was built for " + walletName + " hardware wallets with firmware version " + FIRMWARE_VERSIONS[walletType] + ", and it may not work and/or display a different identifier if the hardware wallet doesn't have that firmware version.");
 					
 					// Get APDU commands
 					const apduCommands = APPS[app]["APDU Commands"][walletType].split("\n");
@@ -269,32 +269,36 @@
 						// Get APDU command
 						const apduCommand = fromHexString(apduCommands[i].trim());
 						
-						// Get command class
-						const commandClass = apduCommand[0];
+						// Check if APDU command exists
+						if(apduCommand["length"] !== 0) {
 						
-						// Get command instruction
-						const commandInstruction = apduCommand[1];
-						
-						// Get command parameter one
-						const commandParameterOne = apduCommand[2];
-						
-						// Get command parameter two
-						const commandParameterTwo = apduCommand[3];
-						
-						// Get command data
-						const commandData = apduCommand.subarray(5);
-						
-						// Encrypt the command data
-						const encryptedData = await encrypt(sharedPrivateKey, encryptionInitializationVector, macInitializationVector, commandData);
-						
-						// Update encryption initialization vector
-						encryptionInitializationVector = encryptedData[1];
-						
-						// Update MAC initialization vector
-						macInitializationVector = encryptedData[2];
-						
-						// Send encrypted data to device
-						await hardwareWallet.send(commandClass, commandInstruction, commandParameterOne, commandParameterTwo, Buffer.from(encryptedData[0]));
+							// Get command class
+							const commandClass = apduCommand[0];
+							
+							// Get command instruction
+							const commandInstruction = apduCommand[1];
+							
+							// Get command parameter one
+							const commandParameterOne = apduCommand[2];
+							
+							// Get command parameter two
+							const commandParameterTwo = apduCommand[3];
+							
+							// Get command data
+							const commandData = apduCommand.subarray(5);
+							
+							// Encrypt the command data
+							const encryptedData = await encrypt(sharedPrivateKey, encryptionInitializationVector, macInitializationVector, commandData);
+							
+							// Update encryption initialization vector
+							encryptionInitializationVector = encryptedData[1];
+							
+							// Update MAC initialization vector
+							macInitializationVector = encryptedData[2];
+							
+							// Send encrypted data to device
+							await hardwareWallet.send(commandClass, commandInstruction, commandParameterOne, commandParameterTwo, Buffer.from(encryptedData[0]));
+						}
 					}
 					
 					// Add alert
