@@ -22,8 +22,8 @@ const FIRMWARE_VERSIONS = {
 	// Ledger Flex
 	"Flex": "1.4.1",
 	
-	// Ledger Apex P
-	"Apex P": "1.0.2"
+	// Ledger Nano Gen5
+	"Nano Gen5": "1.0.2"
 };
 
 // Target IDs
@@ -44,8 +44,8 @@ const TARGET_IDS = {
 	// Ledger Flex
 	"Flex": "33300004",
 	
-	// Ledger Apex P
-	"Apex P": "33400004"
+	// Ledger Nano Gen5
+	"Nano Gen5": "33400004"
 };
 
 // Apps
@@ -75,8 +75,8 @@ const APPS = {
 			// Ledger Flex
 			"Flex": "94d2983e9d7e530361ddaaa14468479c3cd28b87304e31f89140be34fb45fbfc",
 			
-			// Ledger Apex P
-			"Apex P": "d0d4814135eeea5655318575536ac8cb45a9c3845026988d30c9850722db69f2"
+			// Ledger Nano Gen5
+			"Nano Gen5": "d0d4814135eeea5655318575536ac8cb45a9c3845026988d30c9850722db69f2"
 		},
 		
 		// APDU commands
@@ -1801,8 +1801,8 @@ e00000000107
 e000000009080000000046d68dee
 e00000000109`,
 			
-			// Ledger Apex P
-			"Apex P": `e0000000130c114d696d626c6557696d626c6520436f696e
+			// Ledger Nano Gen5
+			"Nano Gen5": `e0000000130c114d696d626c6557696d626c6520436f696e
 e0000000160b190001380000000400000000bb0000020000000001
 e0000000050500000000
 e0000000d3060000b0b58cb06c46002562b606f027ff0ff02ef90ff09df920460ff08efeadf82c0080b2052808d10a98adf82c500ff0defc0a980ff0dbfce8e768b10a980024adf82c400ff0d3fc0a980ff0d0fc03f046fc20460cb0b0bd68460ff0c8fc0a9006f013ff07f0bbfb00240620214622460ff067fc0b4949448860204607f0d7fb0125284607f0d3fb05f01dff2046214607f0cefb2846214607f0cafb05f0f3fd00bfd408000010b50521b0fbf1f202eb8202821a4feac002b2fbf1f418bf013400f002f8204410bd0521b0fbf1f101eb8101
